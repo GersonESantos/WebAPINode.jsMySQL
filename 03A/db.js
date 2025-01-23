@@ -1,3 +1,20 @@
+
+const mysql = require('mysql2');
+// Conexão com o banco de dados
+const Conexao = mysql.createConnection({
+    host: 'localhost',
+    user: 'root',
+    password: 'Gabibi89*',
+    database: 'projeto'
+}); 
+// Conectar
+Conexao.connect(function(err){
+    if(err) throw err;
+    console.log('Conectado com sucesso!');
+}
+);
+// Exportar módulo
+module.exports = Conexao;
 const clientes=[
     { id: 1, name: 'João', age: 30, email: 'joao@gmail'  },
     { id: 2, name: 'Maria', age: 25, email: 'maria@gmail' },
@@ -8,8 +25,8 @@ const clientes=[
 
 
 function selectclientes() {
-    const res =clientes.query('SELECT * FROM cliente');    
-    return clientes;
+    const result =Conexao.query('SELECT * FROM cliente');    
+    return result(0);
 }
 
 function selectclientesById(id) {
