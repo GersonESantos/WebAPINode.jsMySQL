@@ -12,19 +12,38 @@ Conexao.connect(function(err){
     console.log('Conectado com sucesso!');
 });
 
-// Função para selecionar cliente por ID
-function selectclientes() {
-    const sql = 'SELECT * FROM produtos';
-    Conexao.query(sql, [id], function(err, results) {
-        if (err) {
-            return callback(err, null);
-        }
-        return callback(null, results[0]);
+function selectprodutos() {
+    return new Promise((resolve, reject) => {
+        Conexao.query('SELECT * FROM produtos', (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(results);
+        });
+    });
+}
+// 
+function selectprodutosById(cod) {
+    return new Promise((resolve, reject) => {
+        Conexao.query('SELECT * FROM produtos WHERE codigo = ?', [cod], (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            if (results.length > 0) {
+                resolve(results[0]);
+            } else {
+                resolve(null);
+            }
+        });
     });
 }
 
-// Exportar módulo
+
+// 
+// 
+//  Exportar módulo
 module.exports = {  
-    selectclientes,
+    selectprodutos,
+    selectprodutosById
     // outras funções...
 };

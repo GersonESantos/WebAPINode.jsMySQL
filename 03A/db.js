@@ -1,4 +1,3 @@
-
 const mysql = require('mysql2');
 // Conexão com o banco de dados
 const Conexao = mysql.createConnection({
@@ -11,54 +10,21 @@ const Conexao = mysql.createConnection({
 Conexao.connect(function(err){
     if(err) throw err;
     console.log('Conectado com sucesso!');
-}
-);
-// Exportar módulo
-module.exports = Conexao;
+});
 
-
-
-function selectclientes(res) {
-    // SQL
-    let sql = '';
-    sql = 'SELECT * FROM produtos ORDER BY RAND()';
-    Conexao.query(sql, function(erro, retorno){
-        if (erro) throw erro;
-        res.render('lista', {produtos:retorno});    
+function selectprodutos() {
+    return new Promise((resolve, reject) => {
+        Conexao.query('SELECT * FROM produtos', (err, results) => {
+            if (err) {
+                return reject(err);
+            }
+            resolve(results);
+        });
     });
-
-function selectclientesById(id) {
-    return clientes.find(cliente => cliente.id === id);
-}
-    return clientes.find(cliente => cliente.id === id);
 }
 
-function insertcliente(cliente) {
-    clientes.push(cliente);
-    return cliente;
-}
-
-function updatecliente(id, cliente) {
-    const index = clientes.findIndex(cliente => cliente.id === id);
-    if (index !== -1) {
-        clientes[index] = cliente;
-        return cliente;
-    } else {
-        return null;
-    }
-}   
-
-function deletecliente(id) {
-    const index = clientes.findIndex(cliente => cliente.id === id);
-    if (index !== -1) {
-        clientes.splice(index, 1);
-    }
-}   
-
-module.exports = {  selectclientes,
-                    selectclientesById,
-                    insertcliente,
-                    updatecliente,
-                    deletecliente
- };
-  
+// Exportar módulo
+module.exports = {  
+    selectprodutos
+    // outras funções...
+};
