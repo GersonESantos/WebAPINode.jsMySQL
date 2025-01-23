@@ -26,7 +26,7 @@ const clientes=[
 
 function selectclientes() {
     const result =Conexao.query('SELECT * FROM cliente');    
-    return result(0);
+    return clientes;
 }
 
 function selectclientesById(id) {
