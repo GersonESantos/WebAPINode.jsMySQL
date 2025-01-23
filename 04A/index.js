@@ -8,6 +8,37 @@ const app = express();
 
 app.use(express.json());
 
+app.get('/customers/:id', async (req, res, next) => {
+    try {
+        const id = parseInt(req.params.id);
+        const customer = await db.selectCustomersById(id);
+        if (customer) {
+            res.json(db.selectCustomersById(id));
+        } else {
+            res.status(404).json({ message: 'Customer not found' });
+        }
+    } catch (err) {
+        next(err);
+    }
+}
+);
+
+app.get('/produtos/:id', async (req, res) => {
+    try {
+    const id = parseInt(req.params.id);
+    const produto = await db.selectprodutosById(id);
+    if (produto) {
+        res.json(produto);
+    } else {
+        res.status(404).json({ message: 'Produto não encontrado' });
+    }
+} catch (err) {
+    next(err);
+}
+}
+);
+
+
 app.get('/produtos', async (req, res) => {
         const results = await db.selectprodutos();
         res.json(results);
