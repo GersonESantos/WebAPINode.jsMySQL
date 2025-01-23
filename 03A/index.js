@@ -8,54 +8,54 @@ const app = express();
 
 app.use(express.json());
 
-app.delete('/customers/:id', async (req, res, next) => {
+app.delete('/clientes/:id', async (req, res, next) => {
     try {
         const id = parseInt(req.params.id);
-        const customer = db.selectCustomersById(id);
-        if (customer) {
-            db.deleteCustomer(id);
-            res.json(customer);
+        const cliente = db.selectclientesById(id);
+        if (cliente) {
+            db.deletecliente(id);
+            res.json(cliente);
         } else {
-            res.status(404).json({ message: 'Customer not found' });
+            res.status(404).json({ message: 'cliente not found' });
         }
     } catch (err) {
         next(err);
     }
 });
 
-app.patch('/customers/:id', async (req, res, next) => {
+app.patch('/clientes/:id', async (req, res, next) => {
     try {
         const id = parseInt(req.params.id);
-        const customer = req.body;
-        const result = await db.updateCustomer(id, customer);
+        const cliente = req.body;
+        const result = await db.updatecliente(id, cliente);
         if (result) {
             res.json(result);
         } else {
-            res.status(404).json({ message: 'Customer not found' });
+            res.status(404).json({ message: 'cliente not found' });
         }
     } catch (err) {
         next(err);
     }
 });
 
-app.post('/customers', async (req, res, next) => {
+app.post('/clientes', async (req, res, next) => {
     try {
-        const customer = req.body;
-        const result = await db.insertCustomer(customer);
+        const cliente = req.body;
+        const result = await db.insertcliente(cliente);
         res.json(result);
     } catch (err) {
         next(err);
     }
 });
 
-app.get('/customers/:id', async (req, res, next) => {
+app.get('/clientes/:id', async (req, res, next) => {
     try {
         const id = parseInt(req.params.id);
-        const customer = await db.selectCustomersById(id);
-        if (customer) {
-            res.json(db.selectCustomersById(id));
+        const cliente = await db.selectclientesById(id);
+        if (cliente) {
+            res.json(db.selectclientesById(id));
         } else {
-            res.status(404).json({ message: 'Customer not found' });
+            res.status(404).json({ message: 'cliente not found' });
         }
     } catch (err) {
         next(err);
@@ -63,10 +63,10 @@ app.get('/customers/:id', async (req, res, next) => {
 }
 );
 
-app.get('/customers', async (req, res, next) => {
+app.get('/clientes', async (req, res, next) => {
     try {
-        const customers = await db.selectCustomers();
-        res.json(customers);
+        const clientes = await db.selectclientes();
+        res.json(clientes);
     } catch (err) {
         next(err);
     }

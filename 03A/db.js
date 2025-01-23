@@ -1,47 +1,47 @@
-const customers=[
-    { id: 1, name: 'João', age: 30, email: 'joao@gmail'  },
-    { id: 2, name: 'Maria', age: 25, email: 'maria@gmail' },
-    { id: 3, name: 'José', age: 40, email: 'jose@gmail'  },
-    { id: 4, name: 'Pedro', age: 35, email: 'pedro@gmail' },
-    { id: 5, name: 'Paulo', age: 22, email: 'paulo@gmail' },
+const clientes=[
+    { id: 1, mome: 'João', idade: 30, email: 'joao@gmail'  },
+    { id: 2, mome: 'Maria', idade: 25, email: 'maria@gmail' },
+    { id: 3, mome: 'José', idade: 40, email: 'jose@gmail'  },
+    { id: 4, mome: 'Pedro', idade: 35, email: 'pedro@gmail' },
+    { id: 5, mome: 'Paulo', idade: 22, email: 'paulo@gmail' },
 ]; // Array de clientes
 
 
-function selectCustomers() {
-    return customers;
+function selectclientes() {
+    return clientes;
 }
 
-function selectCustomersById(id) {
-    return customers.find(customer => customer.id === id);
+function selectclientesById(id) {
+    return clientes.find(cliente => cliente.id === id);
 }
 
-function insertCustomer(customer) {
-    customers.push(customer);
-    return customer;
+function insertcliente(cliente) {
+    clientes.push(cliente);
+    return cliente;
 }
 
-function updateCustomer(id, customer) {
-    const index = customers.findIndex(customer => customer.id === id);
+function updatecliente(id, cliente) {
+    const index = clientes.findIndex(cliente => cliente.id === id);
     if (index !== -1) {
-        customers[index] = customer;
-        return customer;
+        clientes[index] = cliente;
+        return cliente;
     } else {
         return null;
     }
 }   
 
-function deleteCustomer(id) {
-    const index = customers.findIndex(customer => customer.id === id);
+function deletecliente(id) {
+    const index = clientes.findIndex(cliente => cliente.id === id);
     if (index !== -1) {
-        customers.splice(index, 1);
+        clientes.splice(index, 1);
     }
 }   
 
-module.exports = {  selectCustomers,
-                    selectCustomersById,
-                    insertCustomer,
-                    updateCustomer,
-                    deleteCustomer
+module.exports = {  selectclientes,
+                    selectclientesById,
+                    insertcliente,
+                    updatecliente,
+                    deletecliente
  };
   
 
