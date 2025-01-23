@@ -1,13 +1,14 @@
 const clientes=[
-    { id: 1, mome: 'João', idade: 30, email: 'joao@gmail'  },
-    { id: 2, mome: 'Maria', idade: 25, email: 'maria@gmail' },
-    { id: 3, mome: 'José', idade: 40, email: 'jose@gmail'  },
-    { id: 4, mome: 'Pedro', idade: 35, email: 'pedro@gmail' },
-    { id: 5, mome: 'Paulo', idade: 22, email: 'paulo@gmail' },
+    { id: 1, name: 'João', age: 30, email: 'joao@gmail'  },
+    { id: 2, name: 'Maria', age: 25, email: 'maria@gmail' },
+    { id: 3, name: 'José', age: 40, email: 'jose@gmail'  },
+    { id: 4, name: 'Pedro', age: 35, email: 'pedro@gmail' },
+    { id: 5, name: 'Paulo', age: 22, email: 'paulo@gmail' },
 ]; // Array de clientes
 
 
 function selectclientes() {
+    const res =clientes.query('SELECT * FROM cliente');    
     return clientes;
 }
 

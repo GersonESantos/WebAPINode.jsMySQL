@@ -1,8 +1,9 @@
 CREATE DATABASE projeto;
 
-CREATE TABLE produtos(
-codigo INT PRIMARY KEY AUTO_INCREMENT,
-nome VARCHAR(50),
-valor DOUBLE,
-imagem VARCHAR(50)
+CREATE TABLE cliente (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100) NOT NULL,
+    idade INT NOT NULL,
+    email VARCHAR(150)
 );
+select * from cliente;
