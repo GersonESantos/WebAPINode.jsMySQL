@@ -25,9 +25,23 @@ const clientes=[
 
 
 function selectclientes() {
-    const result =Conexao.query('SELECT * FROM cliente');    
-    return clientes;
+
+
+    let sql = '';
+    sql = 'SELECT * FROM produtos ORDER BY RAND()';
+    Conexao.query(sql, function(erro, retorno){
+        if (erro) throw erro;
+        res.render('lista', {produtos:retorno});  }); 
+    
+//     const result =Conexao.query('SELECT * FROM cliente');    
+//     return clientes;
 }
+
+
+
+
+
+
 
 function selectclientesById(id) {
     return clientes.find(cliente => cliente.id === id);

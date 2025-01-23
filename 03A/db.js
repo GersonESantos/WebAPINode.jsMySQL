@@ -15,21 +15,21 @@ Conexao.connect(function(err){
 );
 // Exportar módulo
 module.exports = Conexao;
-const clientes=[
-    { id: 1, name: 'João', age: 30, email: 'joao@gmail'  },
-    { id: 2, name: 'Maria', age: 25, email: 'maria@gmail' },
-    { id: 3, name: 'José', age: 40, email: 'jose@gmail'  },
-    { id: 4, name: 'Pedro', age: 35, email: 'pedro@gmail' },
-    { id: 5, name: 'Paulo', age: 22, email: 'paulo@gmail' },
-]; // Array de clientes
 
 
-function selectclientes() {
-    const result =Conexao.query('SELECT * FROM cliente');    
-    return clientes;
-}
+
+function selectclientes(res) {
+    // SQL
+    let sql = '';
+    sql = 'SELECT * FROM produtos ORDER BY RAND()';
+    Conexao.query(sql, function(erro, retorno){
+        if (erro) throw erro;
+        res.render('lista', {produtos:retorno});    
+    });
 
 function selectclientesById(id) {
+    return clientes.find(cliente => cliente.id === id);
+}
     return clientes.find(cliente => cliente.id === id);
 }
 
@@ -62,4 +62,3 @@ module.exports = {  selectclientes,
                     deletecliente
  };
   
-
