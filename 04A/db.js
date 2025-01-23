@@ -25,6 +25,6 @@ function selectclientes() {
 
 // Exportar módulo
 module.exports = {  
-    selectclientesById,
+    selectclientes,
     // outras funções...
 };
