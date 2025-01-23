@@ -15,7 +15,6 @@ app.get('/produtos', async (req, res) => {
 );
 
 
-
 app.get('/', (req, res, next) => {
     res.json({ message: 'Rodando no Ar' });
 });
