@@ -22,10 +22,9 @@ function selectprodutos() {
         });
     });
 }
-
-function selectprodutosById(cod) {
+async function selectprodutosById(id) {
     return new Promise((resolve, reject) => {
-        Conexao.query('SELECT * FROM produtos WHERE codigo = ?', [cod], (err, results) => {
+        Conexao.query('SELECT * FROM produtos WHERE codigo = ?', [id], (err, results) => {
             if (err) {
                 return reject(err);
             }
@@ -36,10 +35,11 @@ function selectprodutosById(cod) {
             }
         });
     });
-}
+}   
 
+// Exportar módulo
 module.exports = {  
     selectprodutos,
-    selectprodutosById,
+    selectprodutosById
     // outras funções...
 };
