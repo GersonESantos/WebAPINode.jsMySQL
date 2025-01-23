@@ -15,7 +15,8 @@ Conexao.connect(function(err){
 );
 // Exportar módulo
 module.exports = Conexao;
-const clientes=[
+
+const customers=[
     { id: 1, name: 'João', age: 30, email: 'joao@gmail'  },
     { id: 2, name: 'Maria', age: 25, email: 'maria@gmail' },
     { id: 3, name: 'José', age: 40, email: 'jose@gmail'  },
@@ -25,23 +26,9 @@ const clientes=[
 
 
 function selectclientes() {
-
-
-    let sql = '';
-    sql = 'SELECT * FROM produtos ORDER BY RAND()';
-    Conexao.query(sql, function(erro, retorno){
-        if (erro) throw erro;
-        res.render('lista', {produtos:retorno});  }); 
-    
-//     const result =Conexao.query('SELECT * FROM cliente');    
-//     return clientes;
+        
+    return clientes;
 }
-
-
-
-
-
-
 
 function selectclientesById(id) {
     return clientes.find(cliente => cliente.id === id);
